@@ -13,10 +13,10 @@
 ????
 ##  Konfigurasi VLSM dalam GNS3
 Ini merupakan perhitungan-perhitungan konfigurasi awal dalam VLSM:
-![image](https://user-images.githubusercontent.com/7030663/206912273-feecf61c-96b3-49c5-9bf9-de2ee5ae37f9.png)
-![image](https://user-images.githubusercontent.com/7030663/206912281-b4546812-3edc-4ea3-8852-9d48dbfb95ff.png)
-![image](https://user-images.githubusercontent.com/7030663/206912286-1eef1255-3087-4c82-b119-0182dcd6d9e6.png)
-![image](https://user-images.githubusercontent.com/7030663/206912290-494b28bd-c8b0-4d75-9423-fd90081e79c4.png)
+![image](https://user-images.githubusercontent.com/7030663/206912273-feecf61c-96b3-49c5-9bf9-de2ee5ae37f9.png)<br>
+![image](https://user-images.githubusercontent.com/7030663/206912281-b4546812-3edc-4ea3-8852-9d48dbfb95ff.png)<br>
+![image](https://user-images.githubusercontent.com/7030663/206912286-1eef1255-3087-4c82-b119-0182dcd6d9e6.png)<br>
+![image](https://user-images.githubusercontent.com/7030663/206912290-494b28bd-c8b0-4d75-9423-fd90081e79c4.png)<br>
 Setelah konfigurasi awal ini, kami akan menjalankan ini pada Eden sebagai DNS server:
 DNSServer.sh
 ```
