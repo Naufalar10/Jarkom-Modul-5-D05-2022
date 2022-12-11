@@ -20,28 +20,28 @@ Ini merupakan perhitungan-perhitungan konfigurasi awal dalam VLSM:
 Setelah konfigurasi awal ini, kami akan menjalankan ini pada Eden sebagai DNS server:
 DNSServer.sh
 ```
-echo ' zone "eden.D09.com" {
+echo ' zone "eden.D05.com" {
 type master;
-file "/etc/bind/eden/eden.D09.com";
+file "/etc/bind/eden/eden.D05.com";
 }; ' > /etc/bind/named.conf.local
 mkdir /etc/bind/eden
-cp /etc/bind/db.local /etc/bind/eden/eden.D09.com
+cp /etc/bind/db.local /etc/bind/eden/eden.D05.com
 echo -e '
 ;
 ; BIND data file for local loopback interface
 ;
 $TTL  604800
-@  IN  SOA  eden.D09.com. root.eden.D09.com. (
+@  IN  SOA  eden.D05.com. root.eden.D05.com. (
 2  ; Serial
 604800  ; Refresh
 86400  ; Retry
 2419200  ; Expire
 604800 )  ; Negative Cache TTL
 ;
-@  IN  NS  eden.D09.com.
+@  IN  NS  eden.D05.com.
 @  IN  A  192.189.7.130  ; IP Eden
 @  IN  AAAA  ::1
-' > /etc/bind/eden/eden.D09.com
+' > /etc/bind/eden/eden.D05.com
 service bind9 restart 
 ```
 tambahan.sh
@@ -66,15 +66,15 @@ listen-on-v6 { any; };
 **Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Strix menggunakan iptables, tetapi Loid tidak ingin menggunakan MASQUERADE.**
 Untuk mengerjakan soal ini, kami menggunakan command ini pada node strix.
 ```
-iptables -t nat -A POSTROUTING -s 192.189.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.2
+iptables -t nat -A POSTROUTING -s 192.187.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.2
 ```
 TODO GANTI IP ADDRESS
 ## Nomor 2
 **Kalian diminta untuk melakukan drop semua TCP dan UDP dari luar Topologi kalian pada server yang merupakan DHCP Server demi menjaga keamanan.**
 Untuk mengerjakan soal ini,  kami akan men drop semua koneksi TCP dan UDP di luar jaringan kita. Command ini akan dijalankan pada node strix.
 ```
-iptables -A FORWARD -p tcp -d 192.189.7.131 -i eth0 -j DROP # Drop semua TCP
-iptables -A FORWARD -p udp -d 192.189.7.131 -i eth0 -j DROP # Drop semua UDP
+iptables -A FORWARD -p tcp -d 192.187.7.131 -i eth0 -j DROP # Drop semua TCP
+iptables -A FORWARD -p udp -d 192.187.7.131 -i eth0 -j DROP # Drop semua UDP
 ```
 TODO GANTI IP ADDRESS + BUKTI BERHASIL
 ## Nomor 3
@@ -97,10 +97,10 @@ TODO GANTI IP ADDRESS + BUKTI BERHASIL
 **Karena kita memiliki 2 Web Server, Loid ingin Ostania diatur sehingga setiap request dari client yang mengakses Garden dengan port 80 akan didistribusikan secara bergantian pada SSS dan Garden secara berurutan dan request dari client yang mengakses SSS dengan port 443 akan didistribusikan secara bergantian pada Garden dan SSS secara berurutan.**
 Untuk mengerjakan soal ini, kami akan menggunakan commands sebagai berikut pada SSS dan Garden:
 ```
-iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.189.7.138 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.189.7.138:80
-iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.189.7.138 -j DNAT --to-destination 192.189.7.139:80
-iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.189.7.139 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.189.7.139:443
-iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.189.7.139 -j DNAT --to-destination 192.189.7.138:443
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.187.7.138 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.187.7.138:80
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.187.7.138 -j DNAT --to-destination 192.187.7.139:80
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.187.7.139 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.187.7.139:443
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.187.7.139 -j DNAT --to-destination 192.187.7.138:443
 ```
 TODO GANTI IP ADDRESS + BUKTI BERHASIL
 ## Nomor 6
