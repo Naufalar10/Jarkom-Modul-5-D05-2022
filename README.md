@@ -39,7 +39,7 @@ $TTL  604800
 604800 )  ; Negative Cache TTL
 ;
 @  IN  NS  eden.D05.com.
-@  IN  A  192.189.7.130  ; IP Eden
+@  IN  A  192.187.7.130  ; IP Eden
 @  IN  AAAA  ::1
 ' > /etc/bind/eden/eden.D05.com
 service bind9 restart 
