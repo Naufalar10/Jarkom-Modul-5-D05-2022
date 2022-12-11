@@ -14,12 +14,12 @@
 ##  Konfigurasi VLSM dalam GNS3
 ![1.1](https://github.com/Naufalar10/Jarkom-Modul-5-D05-2022/blob/main/jarkom_5/clusteringVLSM.png)
 
-Dari pengelompokan subnet tersebut didapatkan subnet terbesar memiliki /21 bit, sehingga pohon pembagian IP dapat dibuat menjadi sebagai berikut:
+Dari pengelompokan subnet tersebut didapatkan subnet terbesar memiliki /21 bit, sehingga pohon pembagian IP dapat dibuat menjadi sebagai berikut:<br>
 ![1.2](https://github.com/Naufalar10/Jarkom-Modul-5-D05-2022/blob/main/jarkom_5/gambar_2.png)
 
-Tabel Netmask dan Broadcast ID
+Tabel Netmask dan Broadcast ID<br>
 ![1.3](https://github.com/Naufalar10/Jarkom-Modul-5-D05-2022/blob/main/jarkom_5/gambar_3.png)
-VLSM Routing - Setting Network Configuration
+VLSM Routing - Setting Network Configuration<br>
 ![1.4](https://github.com/Naufalar10/Jarkom-Modul-5-D05-2022/blob/main/jarkom_5/gambar_4.png)
 
 ## Strix
