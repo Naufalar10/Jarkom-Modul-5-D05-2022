@@ -10,7 +10,7 @@
 | Naufal Ariq Putra Yosyam | 5025201112 |
 
 ## Prefix IP
-????
+```192.187```
 ##  Konfigurasi VLSM dalam GNS3
 Ini merupakan perhitungan-perhitungan konfigurasi awal dalam VLSM:
 ![image](https://user-images.githubusercontent.com/7030663/206912273-feecf61c-96b3-49c5-9bf9-de2ee5ae37f9.png)<br>
