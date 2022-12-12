@@ -313,7 +313,6 @@ Untuk mengerjakan soal ini, kami menggunakan command ini pada node strix.
 ```
 iptables -t nat -A POSTROUTING -s 192.187.0.0/21 -o eth0 -j SNAT --to-source 192.168.122.2
 ```
-TODO GANTI IP ADDRESS
 ## Nomor 2
 **Kalian diminta untuk melakukan drop semua TCP dan UDP dari luar Topologi kalian pada server yang merupakan DHCP Server demi menjaga keamanan.**
 Untuk mengerjakan soal ini,  kami akan men drop semua koneksi TCP dan UDP di luar jaringan kita. Command ini akan dijalankan pada node strix.
@@ -321,7 +320,6 @@ Untuk mengerjakan soal ini,  kami akan men drop semua koneksi TCP dan UDP di lua
 iptables -A FORWARD -p tcp -d 192.187.7.131 -i eth0 -j DROP # Drop semua TCP
 iptables -A FORWARD -p udp -d 192.187.7.131 -i eth0 -j DROP # Drop semua UDP
 ```
-TODO GANTI IP ADDRESS + BUKTI BERHASIL
 ## Nomor 3
 **Loid meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 2 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.**
 Untuk mengerjakan soal ini, kami akan mengset IPTABLES untuk hanya menerima 2 koneksi dalam satu waktu. Hal ini akan dijalankan pada DHCP server WISE dan DNS server Eden.
@@ -329,7 +327,6 @@ Untuk mengerjakan soal ini, kami akan mengset IPTABLES untuk hanya menerima 2 ko
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p icmp -m connlimit --connlimit-above 2 --connlimit-mask 0 -j DROP
 ```
-TODO GANTI IP ADDRESS + BUKTI BERHASIL
 ## Nomor 4
 **Akses menuju Web Server hanya diperbolehkan disaat jam kerja yaitu Senin sampai Jumat pada pukul 07.00 - 16.00.**
 Untuk mengerjakan soal ini, kami akan mengatur Garden dan SSS dengan command sebagai berikut:
@@ -337,7 +334,6 @@ Untuk mengerjakan soal ini, kami akan mengatur Garden dan SSS dengan command seb
 iptables -A INPUT -m time --timestart 07:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
 iptables -A INPUT -j REJECT
 ```
-TODO GANTI IP ADDRESS + BUKTI BERHASIL
 ## Nomor 5
 **Karena kita memiliki 2 Web Server, Loid ingin Ostania diatur sehingga setiap request dari client yang mengakses Garden dengan port 80 akan didistribusikan secara bergantian pada SSS dan Garden secara berurutan dan request dari client yang mengakses SSS dengan port 443 akan didistribusikan secara bergantian pada Garden dan SSS secara berurutan.**
 Untuk mengerjakan soal ini, kami akan menggunakan commands sebagai berikut pada SSS dan Garden:
@@ -347,7 +343,6 @@ iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.187.7.138 -j DNAT --to-de
 iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.187.7.139 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.187.7.139:443
 iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.187.7.139 -j DNAT --to-destination 192.187.7.138:443
 ```
-TODO GANTI IP ADDRESS + BUKTI BERHASIL
 ## Nomor 6
 **Karena Loid ingin tau paket apa saja yang di-drop, maka di setiap node server dan router ditambahkan logging paket yang di-drop dengan standard syslog level.**
 Untuk mengerjakan soal ini, pertama kami akan me-restart DHCP server di WISE:
@@ -371,5 +366,4 @@ iptables -A INPUT -j LOGGING
 iptables -A LOGGING -j LOG --log-prefix "IPTables-Rejected: "
 iptables -A LOGGING -j REJECT
 ```
-TODO GANTI IP ADDRESS + BUKTI BERHASIL
 
